@@ -1,106 +1,117 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Dark mode variant */
+/* 1. Define the Dark Mode Strategy */
 @custom-variant dark (&:is(.dark *));
 
-/* -------------------------
-   THEME TOKENS (Keep yours)
--------------------------- */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --radius-lg: var(--radius);
+/* ---------------------------------------------------------
+   2. THEME DEFINITIONS (Tailwind v4 Configuration)
+   Everything here replaces your tailwind.config.ts
+--------------------------------------------------------- */
+@theme {
+  /* BACKGROUND IMAGES */
+  --background-image-auth-dark: url("/images/auth-dark.png");
+  --background-image-auth-light: url("/images/auth-light.png");
+
+  /* BRAND COLORS */
+  --color-primary-100: #FFF1E6;
+  --color-primary-500: #FF7000;
+  
+  /* LIGHT PALETTE */
+  --color-light-900: #FFFFFF;
+  --color-light-850: #FDFDFD;
+  --color-light-800: #F4F6F8;
+  --color-light-700: #DCE3F1;
+  --color-light-500: #7B8EC8;
+  --color-light-400: #858EAD;
+  
+  /* DARK PALETTE */
+  --color-dark-100: #000000;
+  --color-dark-200: #0F1117;
+  --color-dark-300: #151821;
+  --color-dark-400: #212734;
+  --color-dark-500: #101012;
+
+  /* SYSTEM COLORS (Fixes 'bg-background' error) */
+  --color-background: white;
+  --color-foreground: #0f172a;
+
+  /* TYPOGRAPHY */
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
-/* Light theme */
-:root {
-  --radius: 0.5rem;
-
-  --background: #ffffff;
-  --foreground: #0f172a;
-
-  --light-900: #ffffff;
-  --light-800: #f9fafb;
-  --light-700: #f3f4f6;
-  --light-500: #9ca3af;
-  --light-400: #6b7280;
-
-  --dark-100: #111827;
-  --dark-200: #1f2937;
-  --dark-300: #374151;
-  --dark-400: #4b5563;
-  --dark-500: #6b7280;
-
-  --primary-500: #ff7000;
+/* ---------------------------------------------------------
+   3. CUSTOM UTILITIES (Tutorial Specific Classes)
+   v4 uses the @utility directive for combined classes
+--------------------------------------------------------- */
+@utility background-light800_dark200 {
+  background-color: var(--color-light-800);
+  @variant dark { background-color: var(--color-dark-200); }
 }
 
-/* Dark mode */
-.dark {
-  --background: #0b0f19;
-  --foreground: #f9fafb;
-
-  --light-900: #f9fafb;
-  --light-800: #e5e7eb;
-  --light-700: #d1d5db;
-
-  --dark-100: #111827;
-  --dark-200: #151821;
-  --dark-300: #1f2937;
-  --dark-400: #374151;
-  --dark-500: #6b7280;
+@utility background-dark400_light900 {
+  background-color: var(--color-light-900);
+  @variant dark { background-color: var(--color-dark-400); }
 }
 
-/* -------------------------
-   BASE STYLES
+@utility text-dark100_light900 {
+  color: var(--color-dark-100);
+  @variant dark { color: var(--color-light-900); }
+}
+
+@utility text-dark200_light800 {
+  color: var(--color-dark-200);
+  @variant dark { color: var(--color-light-800); }
+}
+
+@utility light-border {
+  border-color: var(--color-light-800);
+  @variant dark { border-color: var(--color-dark-300); }
+}
+
+@utility h2-bold {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+@utility body-medium {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+@utility paragraph-regular {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@utility invert-colors {
+  filter: invert(1);
+  @variant dark { filter: invert(0); }
+}
+
+@utility flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ---------------------------------------------------------
+   4. BASE STYLES
 -------------------------- */
 @layer base {
   body {
-    @apply bg-background text-foreground font-sans;
-  }
-}
-
-/* -------------------------
-   HIS CUSTOM UTILITIES (MODERN WAY)
--------------------------- */
-@layer utilities {
-  /* Background combos */
-  .background-light900_dark200 {
-    background-color: var(--light-900);
-  }
-  .dark .background-light900_dark200 {
-    background-color: var(--dark-200);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-inter);
   }
 
-  .background-light800_dark300 {
-    background-color: var(--light-800);
-  }
-  .dark .background-light800_dark300 {
-    background-color: var(--dark-300);
-  }
-
-  /* Text combos */
-  .text-dark-100 {
-    color: var(--dark-100);
-  }
-  .dark .text-light-900 {
-    color: var(--light-900);
-  }
-
-  /* Primary color */
-  .text-primary-500 {
-    color: var(--primary-500);
-  }
-
-  /* Typography */
-  .h2-bold {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  /* Flex helpers */
-  .flex-between {
-    @apply flex justify-between items-center;
+  /* Dark mode overrides for base variables */
+  .dark body {
+    --color-background: #0b0f19;
+    --color-foreground: #f9fafb;
   }
 }
