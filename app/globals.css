@@ -98,6 +98,16 @@
   justify-content: space-between;
   align-items: center;
 }
+@utility primary-gradient {
+  background: linear-gradient(129deg, var(--color-primary-500) 0%, #FF8A00 100%);
+}
+
+@utility primary-text-gradient {
+  background: linear-gradient(129deg, var(--color-primary-500) 0%, #FF8A00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 /* ---------------------------------------------------------
    4. BASE STYLES
