@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Theme from './Theme'
 import MobileNavigation from './MobileNavigation'
+import LeftSidebar from './LeftSidebar'
 
 
 const Navbar = () => {
@@ -23,7 +24,9 @@ const Navbar = () => {
         <p>Global Search</p>
         <div className='flex justify-between items-center gap-5'>
           <Theme />
+          
           <MobileNavigation />
+         
           </div>
      </nav>
   )

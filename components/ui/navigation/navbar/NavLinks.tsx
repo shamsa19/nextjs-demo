@@ -12,6 +12,7 @@ import { SheetClose } from '../../sheet'
 
 
 
+
 export const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
     const pathname = usePathname();
     const userId = 1; 
@@ -31,9 +32,9 @@ export const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => 
                     key={item.label}
                     className={cn(
                         isActive
-                            ? "primary-gradient rounded-lg text-light-900"
+                            ? "primary-gradient rounded-lg text-light-900 "
                             : "text-dark300_light900",
-                        "flex items-center justify-start gap-4 bg-transparent p-4"
+                        "flex items-center justify-start gap-4 bg-transparent pr-4 pl-4 py-4 w-fit"
                     )}>
                     <Image
                         src={item.imgURL}
